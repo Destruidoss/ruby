@@ -8,3 +8,4 @@
 
 "!".prepend("hello, ", "world") #=> "hello, world!"
 #prepend aloca uma string e prefixa ela, parece com sub
+

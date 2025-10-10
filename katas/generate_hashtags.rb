@@ -1,22 +1,39 @@
-def generate_hashtag(text)
+def generate_hashtag(str)
+  return false if str.strip.empty? || str.strip.nil?
+  
+  hash = str.split.map(&:capitalize).join.prepend('#')
 
-    return false if text.empty?
-
-    calculate = 140
-
-    if text.length > calculate
-        puts false
-    end
-
-    text.split.map(&:capitalize).join.prepend('#')
-
+  if hash.length > 140
+    return false
+  else
+    return hash
+  end
 end
-input = " Hello there thanks for trying my Kata"
+
+print "Digite algo: "
+input = gets.chomp
 puts generate_hashtag(input)
-puts generate_hashtag('')
 
+=begin
+def dotest(str, expected, msg="")
+  it "str = #{str.inspect}" do
+    actual = generate_hashtag(str)
+    expect(actual).to eq(expected), "#{msg}\nexpected: #{expected.inspect}\n     got: #{actual.inspect}".strip
+  end
+end
 
+describe "Fixed tests" do
+  dotest("", false, "Expected an empty string to return false")
+  dotest(" " * 200, false, "Still an empty string")
+  dotest("Do We have A Hashtag", "#DoWeHaveAHashtag", "Expected a Hashtag (#) at the beginning.")
+  dotest("Codewars", "#Codewars", "Should handle a single word.")
+  dotest("Codewars Is Nice", "#CodewarsIsNice", "Should remove spaces.")
+  dotest("Codewars is nice", "#CodewarsIsNice", "Should capitalize first letters of words.")
+  dotest("code" + " " * 140 + "wars", "#CodeWars")
+  dotest("Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong Cat", false, "Should return false if the final word is longer than 140 chars.")
+  dotest("a" * 139, "#A" + "a" * 138, "Should work")
+  dotest("a" * 140, false, "Too long")
+end
 
-
-
+=end
 
