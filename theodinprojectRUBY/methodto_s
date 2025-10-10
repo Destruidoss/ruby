@@ -1,0 +1,7 @@
+5.to_s        #=> "5"
+
+nil.to_s      #=> ""
+
+:symbol.to_s  #=> "symbol"
+#Usando o to_s , você pode converter praticamente qualquer coisa em uma string.
+
