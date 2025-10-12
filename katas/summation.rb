@@ -1,7 +1,10 @@
-def summation(sum)
-    num = [1,1]
-    soma = num.sum
-
-    print soma
+def summation(num)
+    total = 0
+    for i in 1..num
+        total = total + i
+        end
+    return total
 end
+
+puts summation(2)
 
