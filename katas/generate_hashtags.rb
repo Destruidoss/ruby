@@ -3,11 +3,7 @@ def generate_hashtag(str)
   
   hash = str.split.map(&:capitalize).join.prepend('#')
 
-  if hash.length > 140
-    return false
-  else
-    return hash
-  end
+  hash.length > 140 ? false : hash
 end
 
 print "Digite algo: "
