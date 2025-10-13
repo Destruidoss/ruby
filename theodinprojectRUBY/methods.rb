@@ -67,6 +67,7 @@ puts arr_uniq.inspect
 ###Resumo: array → array sem duplicatas
 
 
+################to_s############################################################
 
 # metodo to_s
 5.to_s        #=> "5"
