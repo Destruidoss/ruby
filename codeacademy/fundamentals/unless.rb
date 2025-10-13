@@ -5,3 +5,7 @@ unless fome
 else
     puts "Tempo bom para aprender"
 end
+
+# home = false
+
+# print "I'm at work!" unless home 
