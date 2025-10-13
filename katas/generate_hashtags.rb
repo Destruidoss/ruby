@@ -1,9 +1,9 @@
 def generate_hashtag(str)
   return false if str.strip.empty? || str.strip.nil?
   
-  hash = str.split.map(&:capitalize).join.prepend('#')
+  hashtag = str.split.map(&:capitalize).join.prepend('#')
 
-  hash.length > 140 ? false : hash
+  hashtag.length > 140 ? false : hashtag
 end
 
 print "Digite algo: "
