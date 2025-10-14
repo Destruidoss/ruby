@@ -5,6 +5,16 @@ array.each do |x|
     print "#{x}"
 end
 
+#each com iteraçao(loop)
+s = [["ham", "swiss"], ["turkey", "cheddar"], ["roast beef", "gruyere"]]
+
+s.each do | sub_array |
+  sub_array.each do | y |
+    puts y
+  end
+end
+
+
 =begin
 
 pode ser feito tambem o each da seguinte forma
