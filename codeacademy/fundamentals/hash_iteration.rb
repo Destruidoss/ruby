@@ -48,9 +48,48 @@ secret_identities.each do |_, name|
 end
 
 
-##########################Hash_frequency############
+##########################Hash_frequency###########
+#iterando sobre um hash e arrays
 
-h = Hash.new("nada aqui")
+puts "algo: "
+text = gets.chomp
+words = text.split
 
-puts h
-#{}
+frequencies = Hash.new(0)
+words.each { | x | frequencies[x] += 1}
+
+frequencies = frequencies.sort_by do |word, count|
+  puts word + " " + count.to_s
+end
+
+frequencies.reverse!
+
+
+
+def teste1
+  puts "algo: "
+  text = gets.chomp
+  words = text.split
+  
+  frequencies = Hash.new(0)
+  words.each { | x | frequencies[x] += 1}
+  
+  frequencies = frequencies.sort_by 
+    puts x + " " + y.to_s
+  end
+  frequencies.reverse!
+end
+
+
+puts "algo: "
+text = gets.chomp
+words = text.split
+
+frequencies = Hash.new(0)
+words.each { | x | frequencies[x] += 1}
+
+frequencies = frequencies.sort_by do |word, count|
+  puts word + " " + count.to_s
+end
+
+frequencies.reverse!
