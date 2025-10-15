@@ -50,7 +50,7 @@ end
 
 ##########################Hash_frequency###########
 #iterando sobre um hash e arrays
-
+#execute-o algumas vezes para ver como ele conta o número de #ocorrências de cada palavra na sua string.
 puts "algo: "
 text = gets.chomp
 words = text.split
@@ -63,33 +63,4 @@ frequencies = frequencies.sort_by do |word, count|
 end
 
 frequencies.reverse!
-
-
-
-def teste1
-  puts "algo: "
-  text = gets.chomp
-  words = text.split
-  
-  frequencies = Hash.new(0)
-  words.each { | x | frequencies[x] += 1}
-  
-  frequencies = frequencies.sort_by 
-    puts x + " " + y.to_s
-  end
-  frequencies.reverse!
-end
-
-
-puts "algo: "
-text = gets.chomp
-words = text.split
-
-frequencies = Hash.new(0)
-words.each { | x | frequencies[x] += 1}
-
-frequencies = frequencies.sort_by do |word, count|
-  puts word + " " + count.to_s
-end
-
-frequencies.reverse!
+##########################Hash_frequency###########
