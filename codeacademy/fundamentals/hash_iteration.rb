@@ -29,17 +29,28 @@ end
 #iterando em duas  colunas do hash 
 #tanto na chave quanto no valor
 secret_identities = {
+  "The Batman": "Bruce Wayne",
+  "Superman": "Clark Kent",
+  "Wonder Woman": "Diana Prince",
+  "Freakazoid": "Dexter Douglas"
+}
+
+#pode ser feito de ambas as formas
+secret_identities = {
   "The Batman" => "Bruce Wayne",
   "Superman" => "Clark Kent",
   "Wonder Woman" => "Diana Prince",
   "Freakazoid" => "Dexter Douglas"
 }
-  
-secret_identities.each do |hero, name| 
-  puts "#{hero}: #{name}"
+
+secret_identities.each do |_, name| 
+  puts "#{name}"
 end
 
 
+##########################Hash_frequency############
 
+h = Hash.new("nada aqui")
 
-
+puts h
+#{}

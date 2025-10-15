@@ -38,4 +38,17 @@ end
 este é com maps simplificado
 odds.map {|i| i*2}
 
+
+
+o each tambem pode pegar o valor de uma variavel antes definida como um array, da seguinte forma:
+
+
+puts "algo: "  #aqui imprimi na tela pro user
+text = gets.chomp #aqui recebe o texto do input
+words = text.split #aqui define as palavras
+
+frequencies = Hash.new(0)
+words.each { | x | frequencies[x] += 1}
+
+
 =end
