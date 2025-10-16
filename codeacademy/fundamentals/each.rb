@@ -14,6 +14,16 @@ s.each do | sub_array |
   end
 end
 
+#each com iteracao em um unico each para hashs
+matz = { "First name" => "Yukihiro",
+  "Last name" => "Matsumoto",
+  "Age" => 47,
+  "Nationality" => "Japanese",
+  "Nickname" => "Matz"
+}
+matz.each { |x, y| puts y}
+#neste caso imprimi somente o value e nao o nome de sua chave
+
 
 =begin
 
@@ -26,6 +36,11 @@ item.each { |qualquercoisa|
 Geralmente por boas praticas digitar o .each{ |x| puts x}
 
 
+
+##########################
+object.method { |placeholder| action }
+exemplo de sintaxe
+
 each com atribuicao e multipplicacao de arrays
 
 odds = [1,3,5,7,9]
@@ -33,6 +48,12 @@ odds.each do |x|
     x *= 2
     print "#{x}"
 end
+
+each de multiplicacao de valores de arrays simplificado com um bloco
+my_array = [1, 2, 3, 4, 5]
+
+my_array.each { |x| puts x *= x }
+
 
 
 este é com maps simplificado

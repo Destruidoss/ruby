@@ -14,6 +14,11 @@ my_hash = { "name" => "Eric",
 puts my_hash["name"]
 puts my_hash["age"]
 puts my_hash["hungry?"]
+#para acessar um valor de uma chave de um hash pode ser feito conforme acima ou conforme mostra abaixo com ou sem o puts
+creatures["birds"]
+
+
+# para passar um valor padrao para um hash que nao queria que retorne nulo quando o mesmo nao obtiver o valor da chave necessario, basta passar um valor padrao para ele retornar
 
 =begin
 pets = Hash.new
