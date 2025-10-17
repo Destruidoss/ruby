@@ -52,29 +52,45 @@ else
 end
 
 
-
-
-
 ##########meu codigo ###############3
-movies = {os_sem_florestas: 4}
-puts "digita ai: "
+movies = {
+  }
+puts "Escolha uma opção add, update, display, delete"
 choice = gets.chomp
 
-case choice
-  when 'add'
-  puts "qual filme quer adicionar"
-  title = gets.chomp
-  puts "classifique o filme"
+case choice 
+  when "add"
+    puts "adicione um nome de um filme"
+    title = gets.chomp
+      if movies [title.to_sym].nil?
+      puts "digite um rating"
   rating = gets.chomp
-  movies[title.to_sym] = rating.to_i
-  movies = title == title ? "ja existe este" : "adicionado"
-  puts "teste"
-  when 'update'
-  puts "updated"
-  when 'display'
-  puts "movies"
-  when 'delete'
-  puts "deleted"
-  else 
+  movies [title.to_sym] = rating.to_i
+  puts "#{title.upcase} foi adicionado com rating #{rating}"
+  else
   puts "Error!"
-end
+  end
+  when "update"
+  puts "digite o nome de um titulo"
+  title = gets.chomp
+  if movies [title].nil?
+  puts "filme nao esta na lista"
+  else
+  puts "adicione este para a lista"
+  rating = gets.chomp 
+  movies [title.to_sym] = rating.to_i
+  end
+  when 'display'
+  movies.each do | movie, rating |
+    puts "#{movie}: #{rating}"
+    end
+  when 'delete'
+    puts "digite um nome para deletar"
+      title = gets.chomp
+    if movies[title].nil?
+      puts "filme nao encontrado"
+    else
+      movies.delete(title.to_sym)
+      puts "#{title} deleted!"
+    end
+  end
