@@ -1,0 +1,1 @@
+"P".downto("L") { |x| puts x}
