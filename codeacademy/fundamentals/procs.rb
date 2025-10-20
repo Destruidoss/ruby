@@ -4,7 +4,13 @@ Por isso, os blocos não podem ser salvos em variáveis
 
 Você pode pensar em uma proc como um bloco "salvo": assim como você pode dar um nome a um trecho de código e transformá-lo em um método, você pode nomear um bloco e transformá-lo em uma proc. Procs são ótimas para manter seu código DRY , que significa " Não Repita Você Mesmo " . Com blocos, você precisa escrever seu código sempre que precisar; com uma proc, você escreve seu código uma vez e pode usá-lo muitas vezes!
 
+Criação: Você pode criar um Proc de várias maneiras:
 
+Usando Proc.new { |args| ... }
+
+Usando o atalho proc { |args| ... }
+
+ou com bloco do , igual abaixo
 
 =end
 multiples_of_3 = Proc.new do |n|
@@ -17,14 +23,31 @@ puts (&multiples_of_3)
 
 ################################sintaxe prox##################################
 =begin
+O .floormétodo arredonda um float (um número com um decimal) para o inteiro mais próximo. Escreva um proc chamado round_downque fará esse arredondamento (adicionamos o código para passá-lo para floats.collect).
+=end
+
+
+floats = [1.2, 3.45, 0.91, 7.727, 11.42, 482.911]
+# Write your code below this line!
+
+round_down = Proc.new do |n| 
+  n = n.floor
+end
+
+
+# Write your code above this line!
+ints = floats.collect(&round_down)
+print ints
+
+
+################################sintaxe prox##################################
+=begin
 
 Sintaxe Proc
-6 minutos
+
 Procs são fáceis de definir! Basta chamar Proc.newe passar o bloco que deseja salvar. Veja como criaríamos um proc chamado cubeque eleva um número ao cubo (eleva-o à terceira potência):
 
 cube = Proc.new { |x| x ** 3 }
-
-Copy to Clipboard
 
 Podemos então passar o proc para um método que, de outra forma, pegaria um bloco, e não precisamos reescrever o bloco repetidamente!
 
@@ -33,7 +56,6 @@ Podemos então passar o proc para um método que, de outra forma, pegaria um blo
 [4, 5, 6].map!(&cube)
 # ==> [64, 125, 216]
 
-Copy to Clipboard
 
 (Os métodos .collect!e .map!fazem exatamente a mesma coisa.)
 
@@ -50,7 +72,7 @@ ints = floats.collect(&round_down)
 print ints
 
 
-################################ssalvar nossos blocos como procs##################################
+####################ssalvar nossos blocos como procs############################
 
 
 =begin
@@ -82,6 +104,12 @@ puts can_ride_3
 
 
 ################################exemplo simple de proc##################################
+=begin
+Crie um método, greeter, que não aceite argumentos e yields para um bloco.
+
+Crie um Proc, phrase, que coloque "Hello there!". Passe isso para greeterem vez de um bloco. (Não se esqueça de passar &phraseem vez de apenas phrase!)
+=end
+
 def greeter
   yield
 end
@@ -96,7 +124,7 @@ greeter(&phrase)
 =begin
 Chamar um proc com um método não é tão complicado. No entanto, existe uma maneira ainda mais fácil.
 
-Ao contrário dos blocos, podemos chamar procs diretamente usando .callo método do Ruby. Confira!
+Ao contrário dos blocos, podemos chamar procs diretamente usando .call o método do Ruby. Confira!
 =end
 hi = Proc.new { puts "Hello!" }
 
@@ -119,7 +147,7 @@ Usando o exemplo nas instruções como guia, use collectou mappara criar o strin
 =end
 
 numbers_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
+#neste ponto é chamado um symbol para o map do to_s
 strings_array = numbers_array.map(&:to_s)
 
 puts strings_array

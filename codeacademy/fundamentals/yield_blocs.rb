@@ -46,4 +46,31 @@ yield_name("Eric") { |n| puts "My name is #{n}." }
 
 yield_name("Jamie") { |n| puts "My name is #{n}." }
 
+############################################################################
+=begin
+Agora que sabemos como os métodos aceitam blocos usando a yieldpalavra-chave, vamos definir nosso próprio método e passar um bloco para ele!
 
+Defina seu próprio método, double, que aceita um único parâmetro e retorna um bloco. Em seguida, chame-o com um bloco que multiplica o parâmetro numérico por 2. Você pode dobrar qualquer número que quiser!
+
+putso resultado para ver seu rendimento em ação!
+
+Seu código deve ser parecido com isto:
+
+def method_name(parameter)
+  yield parameter
+end
+
+method_name(argument) { block }
+
+=end
+
+def double(num)
+  yield(num)
+end
+
+double(16) {|x| puts x * 2}
+
+
+
+
+###################################################################################

@@ -49,9 +49,34 @@ print symbols
 
 ################################sLAMBDA##################################
 =begin
+Vamos improvisar com uma lambda que verifica se cada elemento em um array é um símbolo. Podemos fazer essa verificação com o .is_a?método , que retorna truese um objeto é do tipo do objeto nomeado e, falsecaso contrário:
+
+  :hello.is_a? Symbol
+# ==> true
+
+A palavra Symboltem que ser escrita com letra maiúscula quando você estiver fazendo uma .is_a?verificação!
+
+Crie um lambda, symbol_filter, que recebe um parâmetro e verifica se esse parâmetro .is_a? Symbol.
+
+Crie uma nova variável chamada symbolse armazene o resultado da chamada my_array.selecte passe seu lambda.
+
+puts symbolsno final do arquivo para ver o conteúdo final do array.
+  #pode ser feito parecido com isso:
+
+      symbol_filter = lambda { |x| x.magic! }
+    my_array.select(&lambda_name)
+
 
 =end
 
+my_array = ["raindrops", :kettles, "whiskers", :mittens, :packages]
+
+symbol_filter = lambda {|x| x.is_a? Symbol}
+symbols = my_array.select(&symbol_filter)
+
+my_array = ["raindrops", :kettles, "whiskers", :mittens, :packages]
+
+puts symbols
 
 
 
