@@ -82,9 +82,13 @@ puts symbols
 
 ################################sLAMBDA##################################
 =begin
-
+trazendo apenas os inteiros de um array estranho, usando lambda para isso
 =end
+odds_n_ends = [:weezard, 42, "Trady Blix", 3, true, 19, 12.345]
 
+intx = lambda { |x| x.is_a? Integer}
+ints = odds_n_ends.select(&intx)
+puts ints
 
 
 

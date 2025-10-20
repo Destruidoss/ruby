@@ -167,6 +167,22 @@ puts youngsters
 
 
 
+################3o mesmo porem constando com bloco do ao inves do proc.new normal
+
+ages = [23, 101, 7, 104, 11, 94, 100, 121, 101, 70, 44]
+
+# Add your code below!
+
+under_100 = Proc.new do |x|
+ x < 100
+end
+youngsters = ages.select(&under_100)
+
+puts youngsters
+
+
+
+
 ################################sLAMBDA##################################
 
 =begin
