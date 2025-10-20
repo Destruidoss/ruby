@@ -188,6 +188,17 @@ puts youngsters
 =begin
 Crie um lambda chamado first_halfque verifica se um valor de hash é menor que (ou seja, anterior no alfabeto a) "M". (Não é necessário fazer nada com o crewhash ainda.) Certifique-se de usar "M" maiúsculo, pois verificaremos nomes em maiúsculas! Como ele verificará um hash, seu lambda deve incluir, |key, value|em vez de apenas |value|.
 
+Lembre-se de que a sintaxe lambda é assim:
+
+my_lambda = lambda { |k,v| # code }
+
+ou
+
+my_lambda = lambda do |k,v|
+  # code
+end
+
+Onde # code está o bit que verifica se o valor do hash é < "M".
 
 =end
 crew = {
