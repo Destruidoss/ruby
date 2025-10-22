@@ -15,8 +15,9 @@ def generateHashtag(str)
   str = "#" << str.split.map(&:capitalize).join
   str.size <= 140 && str.size > 1 ? str : false
 end
-=end
-=begin
+
+
+
 def dotest(str, expected, msg="")
   it "str = #{str.inspect}" do
     actual = generate_hashtag(str)

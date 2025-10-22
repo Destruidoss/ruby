@@ -15,3 +15,7 @@ def count_sheep(array)
     .filter { _1 == true }
     .size
 end
+###solution 4 falhou
+def count_sheep(array)
+  array.filter { |element| element.true? }
+end

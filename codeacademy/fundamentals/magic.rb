@@ -1,5 +1,5 @@
 =begin
-Você pode usar .to_symou .internpara converter uma string em um símbolo.
+Você pode usar .to_sym ou .intern para converter uma string em um símbolo.
 
 Seu código deve ser parecido com isto:
 =end
