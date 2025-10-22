@@ -43,3 +43,11 @@ e_prefix(b[0]).chop
 def remove_char(s)
   s[1...-1]
 end
+
+####alternativa 4
+def remove_char(s)
+  word = s.split('')
+  word.pop  # configura parecido com o split criando um novo array
+  word.shift  
+  word.join
+end
