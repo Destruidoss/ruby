@@ -1,0 +1,3 @@
+def sing
+
+end
