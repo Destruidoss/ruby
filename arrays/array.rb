@@ -10,8 +10,7 @@ Array.new(4){|n| n.to_s}
 ################################################################################
 #este faz a soma de um array com outro array a cada indice que ele passa.
 soma = arr.map.with_index { |v, indice| v + arra[indice] }
-#este faz a soma de um array com outro array a cada indice que ele passa.
-#sera preciso definir os valores antes para as variaveis arr e arra
+#sera preciso definir os valores antes para as variaveis arr
 ################################################################################
 
 ################################################################################
