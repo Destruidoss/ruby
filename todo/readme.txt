@@ -5,7 +5,7 @@ sudo apt update
 sudo apt upgrade
 
 #instale o banco que deseja, no meu caso postgresql
-apt install postgresql
+sudo apt install postgresql
 
 #depois acesse o postgresql e entra no console interativo do postgres e crie #um user e senha.
 sudo -i -u postgres
@@ -41,3 +41,55 @@ sudo apt install libpq-dev
 
 #instale o bundle
 bundle install
+
+#PARA INSTALAR USANDO DOCKER, É NESSARIO SEGUIR OS PASSOS abaixo
+
+###############COM DOCKER####################
+
+TENHA TODAS AS DEPENDENCIAS NO UBUNTU INSTALADOS PARA FUNCIONAR.
+sudo apt install curl
+# 1. Atualiza a lista de pacotes e instala dependências
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg lsb-release
+
+# 2. Adiciona a chave GPG oficial do Docker
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# 3. Adiciona o repositório do Docker ao APT sources
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+################INSTALA O DOCKER###################33
+# 1. Atualiza a lista de pacotes do repositório Docker
+sudo apt-get update
+
+# 2. Instala o Docker Engine e o Docker Compose (plugin)
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+
+>> PARA TESTAR O DOCKKER 
+docker run -ti hello-world
+
+
+#################montagem do postgres no docker##########
+#Este terminal ficará preso, exibindo os logs. Abra um segundo terminal
+
+docker run -ti --rm \
+  --name mypostgres \
+  -e POSTGRES_USER=joaonatal \
+  -e POSTGRES_PASSWORD=123456 \
+  -e POSTGRES_DB=tododb \
+  -p 5432:5432 \
+  -v ./pg_data:/var/lib/postgresql \                      
+  postgres:latest
+
+
+
+
+
+
+
+
