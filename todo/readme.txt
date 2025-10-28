@@ -86,6 +86,8 @@ docker run -ti --rm \
   -v ./pg_data:/var/lib/postgresql \                      
   postgres:latest
 
+  docker run -ti   --name mypostgres   -e POSTGRES_USER=joaonatal   -e POSTGRES_PASSWORD=123456   -e POSTGRES_DB=tododb   -p 5432:5432   -v ./pg_data:/var/lib/postgresql   postgres:latest
+
 
 
 

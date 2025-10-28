@@ -3,12 +3,12 @@ Instanciando seu primeiro objeto
 1 minuto
 Perfeito! Agora estamos prontos para começar a criar objetos.
 
-Podemos criar uma instância de uma classe apenas chamando .newo nome da classe, assim:
+Podemos criar uma instância de uma classe apenas chamando .new nome da classe, assim:
 
 me = Person.new("Eric")
 
 
-Crie uma variável, matz, e defina-a como igual à chamada .newda sua Personclasse. Passe .newo nome "Yukihiro" como seu único argumento.
+Crie uma variável, matz, e defina-a como igual à chamada .new da sua Personclasse. Passe .new o nome "Yukihiro" como seu único argumento.
 
 =end
 
@@ -130,11 +130,38 @@ puts "Number of Person instances: #{Person.number_of_instances}"
 
 
 ################################################################################
-=begin
 
 
+class ContaBanco
+       attr_reader :saldo
+       def initialize(saldo_inicial)
+         @saldo = saldo_inicial
+       end
 
-=end
+       def depositar(valor)
+         if valor > 0
+           @saldo += valor
+           puts "Deposito de #{valor} realizado. Novo saldo #{@saldo}"
+         else
+           puts "Erro: O valor nao pode ser negativo"
+         end
+       end
+
+       def sacar(valor)
+         if valor > 0 && valor <= @saldo
+           @saldo -= valor
+           puts "Saque de #{valor} realizado. Novo saldo: #{@saldo}"
+         elsif valor > @saldo
+           puts "Erro: Saldo insuficiente."
+         else
+           puts "Erro: O valor do saque deve ser positivo"
+         end
+       end
+     end
+
+saq = ContaBanco.new(1) # aqui estou alocando memoria e criando um objeto chamando o new que #é um metodo de todas as classes em ruby
+# O '1' que passou vai para 'saldo_inicial'
+
 
 ################################################################################
 =begin

@@ -1,3 +1,7 @@
+require 'pg'
+require_relative 'db_connector'
+
+#aqui é feito o processo de metodo de classe que faz o trabalho de declarar um metodo
 module AttrAcessorDoJoao
     def my_attr_acessor(...)
         my_attr_writer(...)
@@ -17,44 +21,52 @@ module FerramentasDoJoao
     def self.included(base)
         base.extend(ClassMethods)
     end
-
-    def self.included()
-
+#será incluido o CLassMethods para dentro de base usando extend
     module ClassMethods
-        extend AttrAcessorDoJoao
-
-        @atributos = nil
-        @tabela = nil
+        include AttrAcessorDoJoao
+        @@atributos = nil
+        @@tabela = nil
 
         def atributos(attrs)
-            @atributos = attrs
+            @@atributos = attrs
+            self.my_attr_acessor(*attrs.keys)
         end
 
         def tabela(name)
-            @tabela = name
+            @@tabela = name
         end
 
         def migrate
-            raise ArgumentError, "Atributos MISSING" if @atributos.nil?
-            raise ArgumentError, "Tabela MISSING" if @tabela.nil?
+            raise ArgumentError, "Atributos MISSING" if @@atributos.nil?
+            raise ArgumentError, "Tabela MISSING" if @@tabela.nil?
 
-            puts "A MIGRAR..."
-            puts "#{@atributos}"
-            puts "#{@tabela}"
+            conn = DBConnector.connection
 
-        end
+            campos = @@atributos.map do |nome, tipo|
+                tipo_sql = 
+                case tipo
+                when :string then "VARCHAR(255)"
+                when :int then "INTEGER"
+                when :datetime then "TIMESTAMP"
+                else "TEXT"
+                end
+            "#{nome} #{tipo_sql}"
+            end.join(", ")
 
+            sql = "CREATE TABLE IF NOT EXISTS #{@@tabela} (id SERIAL PRIMARY KEY, #{campos});"
+            conn.exec(sql)
+            puts "Tabela '#{@@tabela}' criada (ou ja existe)."
         end
     end
 end
 
-class Pessoa
-    include FerramentasDoJoao
-    include AttrAcessorDoJoao
-    
-    atributos name: :string, age: :int, birthdate: :datetime
-    tabela :pessoas
-end
+ class Pessoa
+     include FerramentasDoJoao
+     include AttrAcessorDoJoao
+   
+     atributos name: :string, age: :int, birthdate: :datetime
+     tabela :pessoas
+ end
 
 Pessoa.migrate
 

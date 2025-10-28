@@ -1,23 +1,16 @@
 require 'pg'
 
-begin
-    CONN = PG::connect(
-        dbname: 'tododb',
-        user: 'joaonatal',
-        password: '123456',
-        host: 'localhost'
-    )
+conn = PG.connect(
+  host: 'localhost',
+  port: 5432,
+  dbname: 'tododb',
+  user: 'joaonatal',
+  password: '123456'
+)
 
-    puts "conectado"
-# def sql_create_table(tableone)
-#     tableone.exec("CREATE TABLE IF NOT EXISTS Task (
-#     id SERIAL PRIMARY KEY,
-#     description VARCHAR(100),
-#     duedate DATE,
-#     importance,
-#     repeat,) ")
+conn.exec("CREATE TABLE IF NOT EXISTS pessoas (id SERIAL PRIMARY KEY, name VARCHAR, age INT, birthdate TIMESTAMP)")
 
-#CONN.exec(sql_create_table)
+conn.exec("INSERT INTO pessoas (name, age, birthdate) VALUES ('joao', 49, NOW())")
 
-
-CONN.close
+res = conn.exec("SELECT * FROM pessoas")
+res.each { |row| puts row }
