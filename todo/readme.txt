@@ -83,14 +83,17 @@ docker run -ti --rm \
   -e POSTGRES_PASSWORD=123456 \
   -e POSTGRES_DB=tododb \
   -p 5432:5432 \
-  -v ./pg_data:/var/lib/postgresql \                      
+  -v ./pg_data:/var/lib/postgresql/data \
   postgres:latest
 
-  docker run -ti   --name mypostgres   -e POSTGRES_USER=joaonatal   -e POSTGRES_PASSWORD=123456   -e POSTGRES_DB=tododb   -p 5432:5432   -v ./pg_data:/var/lib/postgresql   postgres:latest
+  docker run -ti --rm  --name mypostgres   -e POSTGRES_USER=joaonatal   -e POSTGRES_PASSWORD=123456   -e POSTGRES_DB=tododb   -p 5432:5432   -v ./pg_data:/var/lib/postgresql/data   postgres:latest
 
 
 
+docker start nomecontainer
+docker stop nomecontainer
 
+docker  rm nomecontainer   ##### este apaga o container preso com id
 
 
 
