@@ -95,6 +95,8 @@ docker stop nomecontainer
 
 docker  rm nomecontainer   ##### este apaga o container preso com id
 
+sudo rm -rf pg_data --> para limmpar os dados do banco
+
 
 
 

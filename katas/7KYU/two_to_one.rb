@@ -18,7 +18,6 @@ end
 puts longest("abc", "defg")
 
 a primeira funcao esta da seguinte forma acima, fiz alteracoes
-a alteracao ficou menor do que eu esperava.
 
 chars > converte uma string em array de caracteres
 cada caractere vira um elemento do array com o chars.

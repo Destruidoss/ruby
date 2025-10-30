@@ -10,33 +10,45 @@ print "Digite algo: "
 input = gets.chomp
 puts generate_hashtag(input)
 
-=begin 
+
+#solucao 1
+
 def generateHashtag(str)
   str = "#" << str.split.map(&:capitalize).join
   str.size <= 140 && str.size > 1 ? str : false
 end
 
 
+#solucao 2
 
-def dotest(str, expected, msg="")
-  it "str = #{str.inspect}" do
-    actual = generate_hashtag(str)
-    expect(actual).to eq(expected), "#{msg}\nexpected: #{expected.inspect}\n     got: #{actual.inspect}".strip
+def generateHashtag(str)
+  hashtag = '#' + str.scan(/\w+/).map(&:capitalize).join
+  hashtag.length.between?(2, 140) ? hashtag : false
+end
+
+
+#solucao 3
+
+
+def generateHashtag(str)
+  str = str.split.map(&:capitalize).join
+  (str.empty? or str.length > 139 or str=="#") ? false : "##{str}"
+end
+
+#solucao 4
+
+
+def generateHashtag(str)
+  str = str.split.map(&:capitalize).join
+  if str.length > 139 || str.empty?
+    return false
+  else
+    return "#" + str
   end
 end
 
-describe "Fixed tests" do
-  dotest("", false, "Expected an empty string to return false")
-  dotest(" " * 200, false, "Still an empty string")
-  dotest("Do We have A Hashtag", "#DoWeHaveAHashtag", "Expected a Hashtag (#) at the beginning.")
-  dotest("Codewars", "#Codewars", "Should handle a single word.")
-  dotest("Codewars Is Nice", "#CodewarsIsNice", "Should remove spaces.")
-  dotest("Codewars is nice", "#CodewarsIsNice", "Should capitalize first letters of words.")
-  dotest("code" + " " * 140 + "wars", "#CodeWars")
-  dotest("Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong Cat", false, "Should return false if the final word is longer than 140 chars.")
-  dotest("a" * 139, "#A" + "a" * 138, "Should work")
-  dotest("a" * 140, false, "Too long")
+#solucao 5
+def generateHashtag(str)
+  hashtag = '#' + str.split.map(&:capitalize).join
+  (2..140).include?(hashtag.size) && hashtag
 end
-
-=end
-

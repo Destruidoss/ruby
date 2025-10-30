@@ -1,35 +1,22 @@
 require 'pg'
 require_relative 'db_connector'
-
-#aqui é feito o processo de metodo de classe que faz o trabalho de declarar um metodo
-module AttrAcessorDoJoao
-    def my_attr_acessor(...)
-        my_attr_writer(...)
-        my_attr_reader(...)
-    end
-
-    def my_attr_writer(*args)
-        args.each { |arg| define_method("#{arg}=") { |value|instance_variable_set("@#{arg}", value) } }
-    end
-
-    def my_attr_reader(*args)
-        args.each { |arg| define_method(arg) { instance_variable_get("@#{arg}") } }
-    end
-end
+require_relative 'attr_accessor_man'
 
 module FerramentasDoJoao
     def self.included(base)
         base.extend(ClassMethods)
     end
+
+
 #será incluido o CLassMethods para dentro de base usando extend
     module ClassMethods
-        include AttrAcessorDoJoao
+    include AttrAccessorMan
         @@atributos = nil
         @@tabela = nil
 
         def atributos(attrs)
             @@atributos = attrs
-            self.my_attr_acessor(*attrs.keys)
+            my_attr_accessor(*attrs.keys)
         end
 
         def tabela(name)
@@ -48,7 +35,7 @@ module FerramentasDoJoao
                 when :string then "VARCHAR(255)"
                 when :int then "INTEGER"
                 when :datetime then "TIMESTAMP"
-                else "TEXT"
+                else raise NotImplementedError, "O tipo \"#{tipo}\" nao e suportado"
                 end
             "#{nome} #{tipo_sql}"
             end.join(", ")
@@ -62,7 +49,6 @@ end
 
  class Pessoa
      include FerramentasDoJoao
-     include AttrAcessorDoJoao
    
      atributos name: :string, age: :int, birthdate: :datetime
      tabela :pessoas
@@ -90,4 +76,8 @@ Pessoa.migrate
 
 # print "teste 4: "
 # puts joao.name == "carlos" ? "PASSADO" : "CHUMBADO"
+
+
+# joao = Pessoa.new(name: "João", age: 30, birthdate: "1995-02-03")
+# joao.save
 
