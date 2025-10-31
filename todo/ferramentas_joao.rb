@@ -2,59 +2,23 @@ require 'pg'
 require_relative 'db_connector'
 require_relative 'attr_accessor_man'
 
-module FerramentasDoJoao
-    def self.included(base)
-        base.extend(ClassMethods)
-    end
+# module FerramentasDoJoao
+#     def self.included(base)
+#         base.extend(ClassMethods)
+#     end
 
-
-#será incluido o CLassMethods para dentro de base usando extend
-    module ClassMethods
-    include AttrAccessorMan
-        @@atributos = nil
-        @@tabela = nil
-
-        def atributos(attrs)
-            @@atributos = attrs
-            my_attr_accessor(*attrs.keys)
-        end
-
-        def tabela(name)
-            @@tabela = name
-        end
-
-        def migrate
-            raise ArgumentError, "Atributos MISSING" if @@atributos.nil?
-            raise ArgumentError, "Tabela MISSING" if @@tabela.nil?
-
-            conn = DBConnector.connection
-
-            campos = @@atributos.map do |nome, tipo|
-                tipo_sql = 
-                case tipo
-                when :string then "VARCHAR(255)"
-                when :int then "INTEGER"
-                when :datetime then "TIMESTAMP"
-                else raise NotImplementedError, "O tipo \"#{tipo}\" nao e suportado"
-                end
-            "#{nome} #{tipo_sql}"
-            end.join(", ")
-
-            sql = "CREATE TABLE IF NOT EXISTS #{@@tabela} (id SERIAL PRIMARY KEY, #{campos});"
-            conn.exec(sql)
-            puts "Tabela '#{@@tabela}' criada (ou ja existe)."
-        end
-    end
-end
-
- class Pessoa
-     include FerramentasDoJoao
+#  class Pessoa
+#      include FerramentasDoJoao
    
-     atributos name: :string, age: :int, birthdate: :datetime
-     tabela :pessoas
- end
+#      atributos(name: :string, age: :int, birthdate: :datetime)
+#      tabela :pessoas
+#  end
 
-Pessoa.migrate
+Pessoa.migrate!
+
+joao = Pessoa.new(name: "João", age: 30, birthdate: "1995-02-03")
+joao.save!
+puts joao.inspect
 
 # print "teste 1: "
 # pessoa_que_nao_existe = Pessoa.find(0) # esta funcao vai buscar a pessoa a base de dados a partir do ID
